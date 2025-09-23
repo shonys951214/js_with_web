@@ -1,0 +1,62 @@
+.con {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.testshowbtn {
+  position: absolute;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+}
+.showbtn {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+}
+.showbox {
+  transform: translateX(500px);
+  padding: 40px;
+  position: absolute;
+  right: 0px;
+  width: 500px;
+  height: 100%;
+  background-color: #262f3c;
+  display: flex;
+  flex-direction: column;
+  color: #99a1b1;
+  font-size: 24px;
+  transition: 1s all;
+}
+
+.menuwrap {
+}
+.menu {
+  margin: 20px 0px;
+}
+.menu:hover {
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  border: 1px solid #99a1b1;
+}
+.hidebtn {
+  cursor: pointer;
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+.screenshow {
+  transform: translateX(0px);
+  transition: 1s all;
+}
