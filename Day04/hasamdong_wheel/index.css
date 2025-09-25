@@ -1,0 +1,15 @@
+.swiper {
+  width: 100vw;
+  height: 100vh;
+}
+.slide1 {
+  background-color: pink;
+}
+
+.slide2 {
+  background-color: skyblue;
+}
+
+.slide3 {
+  background-color: beige;
+}
