@@ -20,19 +20,6 @@ window.addEventListener("load", () => {
     }
   );
 
-  // 로딩 중(연녹색 스크린)
-  loadingAreaGreen.animate(
-    {
-      translate: ["0 100vh", "0 0", "0 -100vh"],
-    },
-    {
-      duration: 2000,
-      delay: 800,
-      easing: "ease",
-      fill: "forwards",
-    }
-  );
-
   // 로딩 중 텍스트
   loadingText.animate(
     [
@@ -59,12 +46,14 @@ window.addEventListener("load", () => {
 const mainImage = document.querySelector(".gallery-image img");
 const thumbImages = document.querySelectorAll(".gallery-thumbnails img");
 
-// for(let i = 0; i < thumbImages.length; i++) {
-//   thumbImages[i].addEventListener('mouseover', (event) => {
-//       mainImage.src = event.target.src;
-//       mainImage.animate({opacity: [0, 1]}, 500);
+// for문 아직 안배움
+// for (let i = 0; i < thumbImages.length; i++) {
+//   thumbImages[i].addEventListener("mouseover", (event) => {
+//     mainImage.src = event.target.src;
+//     mainImage.animate({ opacity: [0, 1] }, 500);
 //   });
 // }
+
 thumbImages.forEach((thumbImage) => {
   thumbImage.addEventListener("mouseover", (event) => {
     mainImage.src = event.target.src;
@@ -111,6 +100,16 @@ menuClose.addEventListener("click", () => {
   menuItems.forEach((menuItem) => {
     menuItem.animate({ opacity: [1, 0] }, menuOptions);
   });
+});
+
+// 사진슬라이드
+var swiper = new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
 });
 
 /*

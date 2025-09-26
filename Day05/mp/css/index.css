@@ -1,0 +1,100 @@
+/* liverpool color cb2031 */
+
+/* 로딩페이지 */
+#loading {
+  background-color: #cb2031;
+  color: white;
+  opacity: 0.8;
+  width: 100vw;
+  height: 100vh;
+
+  font-size: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 내비게이터 
+==============================*/
+/* 메뉴 여는 버튼 */
+.btn-menu {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  z-index: 4;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--brown);
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  transition: 0.4s;
+}
+.btn-menu svg {
+  fill: var(--brown);
+  margin-top: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+/* 닫기 버튼 */
+#menu-close {
+  border: 1px solid var(--light-green);
+}
+#menu-close svg {
+  fill: var(--light-green);
+}
+
+/* 슬라이드 메뉴 패널 */
+#menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  padding: 8rem 2rem 2rem;
+  width: max(32vw, 20rem);
+  height: 100vh;
+  background-color: var(--brown);
+  box-shadow: 0 0 2rem var(--brown);
+  font-family: var(--oswald-font);
+  translate: 100vw;
+}
+.menu-list {
+  list-style: none;
+}
+.menu-list li {
+  margin: 1.5rem 0;
+  opacity: 0;
+}
+.menu-list a {
+  color: var(--light-green);
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+/* 타이틀 컨테이너 */
+.title_containor {
+  position: relative;
+  display: flex;
+}
+
+.title_containor > .title_infotext {
+  /* width: 50vw;
+  height: 100vh; */
+}
+.title_containor > .title_infotext > h1 {
+  font-size: 60px;
+  line-height: 1.5;
+}
+.swiper-wrapper {
+  width: 50vw;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.swiper-wrapper > .swiper-slide > img {
+  padding: 60px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  overflow: hidden;
+}
