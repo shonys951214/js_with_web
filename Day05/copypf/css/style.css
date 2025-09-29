@@ -138,7 +138,17 @@ SLIDE MENU
 타이틀 컨테이너 */
 .title_containor {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 800px) {
+  .title_containor {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .title_containor > .title_infotext {
+  }
 }
 
 .title_containor > .title_infotext {
@@ -253,9 +263,8 @@ SHOP INFO
   border-top: 1px solid var(--light-grey);
 }
 
-/*
-DESKTOP SIZE
-================================================ */
+/* DESKTOP SIZE
+ */
 @media (min-width: 800px) {
   /* COMMON */
   .title {

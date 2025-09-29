@@ -1,6 +1,5 @@
-/*
-이미지 썸네일
-================================================ */
+// 이미지 썸네일
+
 const mainImage = document.querySelector(".gallery-image img");
 const thumbImages = document.querySelectorAll(".gallery-thumbnails img");
 

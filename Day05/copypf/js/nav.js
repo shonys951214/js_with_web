@@ -1,6 +1,5 @@
-/*
-슬라이드 메뉴
-================================================ */
+// 슬라이드 메뉴
+
 const menuOpen = document.querySelector("#menu_open");
 const menuClose = document.querySelector("#menu_close");
 const menuPanel = document.querySelector("#menu-panel");
@@ -12,6 +11,7 @@ const menuOptions = {
 };
 
 // 메뉴 열기
+
 menuOpen.addEventListener("click", () => {
   menuPanel.animate({ translate: ["100vw", 0] }, menuOptions);
   menuItems.forEach((menuItem, index) => {
@@ -31,6 +31,7 @@ menuOpen.addEventListener("click", () => {
 });
 
 // 메뉴 닫기
+
 menuClose.addEventListener("click", () => {
   menuPanel.animate({ translate: [0, "100vw"] }, menuOptions);
   menuItems.forEach((menuItem) => {
