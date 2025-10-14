@@ -147,8 +147,6 @@ SLIDE MENU
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
-  .title_containor > .title_infotext {
-  }
 }
 
 .title_containor > .title_infotext {
@@ -279,8 +277,6 @@ SHOP INFO
   .btn-menu:hover {
     background-color: #cb2031;
     fill: white;
-  }
-  .btn-menu:hover > svg {
   }
 
   #menu-close:hover svg {
