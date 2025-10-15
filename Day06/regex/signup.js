@@ -15,7 +15,7 @@ const emailAdress = document.querySelector("#emailAdress");
 const idCheckText = /^[A-Za-z0-9]+$/;
 const idCheckLength = /^.{6,20}$/;
 
-const pwCheckText = /^[A-Za-z0-9!@#$%^&*]+$/;
+const pwCheckText = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])$/;
 const pwCheckLength = /^.{8,20}$/;
 const pwCheckMark = /[!@#$%^&*]/;
 
