@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "GilbutBi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/GilbeotBI.woff")
+    format("woff");
+  font-weight: normal;
+  font-display: swap;
+}
+
+/* Header fin */
+header {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "GilbutBi";
+  font-size: 50px;
+}
+
+section {
+  width: 100%;
+  height: 90vh;
+  font-family: "GilbutBi";
+  display: flex;
+}
+.infoSection {
+  width: 20vw;
+  height: 100%;
+  display: flex;
+  background-color: pink;
+  padding: 20px 0 0 30px;
+}
+.contentSection {
+  width: 100%;
+  /* 나중에 색상 대체 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+  border: 1px solid black;
+}
+.tajaContent {
+  margin-bottom: 50px;
+}
+.wordSwiper {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+
+  overflow: hidden;
+}
+.wordCard {
+  width: 200px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 임시보더 */
+  border: 1px solid green;
+}
+
+.selected {
+  width: 300px;
+  height: 200px;
+}
+#input {
+  border: 1px solid pink;
+  width: 300px;
+  height: 50px;
+
+  font-weight: 100;
+  font-size: 40px;
+  font-family: "GilbutBi";
+  text-align: center;
+}
+#input:focus {
+  outline: none;
+}
