@@ -272,7 +272,6 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
-// 흔들기 효과
 function shake(el) {
   el.style.transition = "transform 0.1s";
   el.style.transform = "translateX(-10px)";
