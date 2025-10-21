@@ -124,6 +124,7 @@ const shuffleArr = (arr) => {
 const startBtn = document.querySelector("#startBtn");
 const resetBtn = document.querySelector("#resetBtn");
 const noti = document.querySelector(".noti");
+const notiSpan = document.querySelector(".noti span");
 const section = document.querySelector("section");
 const input = document.querySelector("#input");
 
@@ -143,32 +144,42 @@ let currentIndex = 0;
 let lives = 5;
 let score = 0;
 
-// START 버튼 클릭 -> 카운트다운
+// START 또는 재도전 버튼 클릭 → 카운트다운
 startBtn.addEventListener("click", () => {
+  startCountdown();
+});
+
+// RESET 버튼 → 새로고침
+resetBtn.addEventListener("click", () => {
+  location.reload();
+});
+
+function startCountdown() {
   let count = 3;
-  noti.textContent = count;
+  notiSpan.textContent = count;
   noti.classList.add("countdown");
+  noti.style.display = "flex";
+  section.style.display = "none";
   startBtn.disabled = true;
+  startBtn.style.display = "none"; // 카운트다운 중 숨김
 
   const countdown = setInterval(() => {
     count--;
     if (count > 0) {
-      noti.textContent = count;
+      notiSpan.textContent = count;
     } else if (count === 0) {
-      noti.textContent = "START!";
+      notiSpan.textContent = "START!";
     } else {
       clearInterval(countdown);
       noti.style.display = "none";
       section.style.display = "block";
       input.focus();
       startBtn.disabled = false;
+      startBtn.style.display = "inline-block";
       startGame();
     }
   }, 1000);
-});
-
-// RESET 버튼 클릭
-resetBtn.addEventListener("click", startGame);
+}
 
 // 게임 시작
 function startGame() {
@@ -179,16 +190,22 @@ function startGame() {
   input.value = "";
   updateInfo();
 
-  // prev 카드 초기화
+  // prev 초기화
   wordCards.prev1.textContent = "";
   wordCards.prev2.textContent = "";
   wordCards.prev1.style.visibility = "hidden";
   wordCards.prev2.style.visibility = "hidden";
+  wordCards.prev1.classList.remove("correct", "wrong");
+  wordCards.prev2.classList.remove("correct", "wrong");
 
+  // mission 업데이트
   updateWordCards();
+
+  // 버튼 텍스트 복구
+  startBtn.textContent = "재도전";
 }
 
-// 단어 카드 업데이트 (mission, next)
+// 단어 카드 업데이트
 function updateWordCards() {
   wordCards.mission.textContent = wordsToType[currentIndex] || "";
   wordCards.mission.style.color = "#000";
@@ -199,31 +216,40 @@ function updateWordCards() {
   wordCards.next2.style.color = wordCards.next2.textContent ? "#ccc" : "";
 }
 
-// prev 카드 내용 갱신
-function updatePrevCards(missionWord) {
+// prev 카드 갱신 (정답 여부 표시)
+function updatePrevCards(missionWord, isCorrect) {
   const prev1 = wordCards.prev1;
   const prev2 = wordCards.prev2;
 
   if (prev1.textContent === "") {
     prev1.textContent = missionWord;
     prev1.style.visibility = "visible";
-  } else if (prev2.textContent === "") {
+    prev1.classList.remove("correct", "wrong");
+    prev1.classList.add(isCorrect ? "correct" : "wrong");
+  } else {
+    // prev2 <- prev1, prev1 <- 새 단어
     prev2.textContent = prev1.textContent;
     prev2.style.visibility = "visible";
+    prev2.classList.remove("correct", "wrong");
+    prev2.classList.add(
+      prev1.classList.contains("correct") ? "correct" : "wrong"
+    );
+
     prev1.textContent = missionWord;
-  } else {
-    prev2.textContent = prev1.textContent;
-    prev1.textContent = missionWord;
+    prev1.classList.remove("correct", "wrong");
+    prev1.classList.add(isCorrect ? "correct" : "wrong");
   }
 }
 
-// 입력 체크
+// 입력 이벤트
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     const currentWord = wordsToType[currentIndex];
     if (!currentWord) return;
 
-    if (input.value.trim() === currentWord) {
+    const isCorrect = input.value.trim() === currentWord;
+
+    if (isCorrect) {
       wordCards.mission.classList.add("correct");
       score++;
     } else {
@@ -232,9 +258,7 @@ input.addEventListener("keydown", (e) => {
       shake(wordCards.mission);
     }
 
-    // prev 카드 갱신
-    updatePrevCards(currentWord);
-
+    updatePrevCards(currentWord, isCorrect);
     currentIndex++;
     input.value = "";
     updateInfo();
@@ -256,7 +280,7 @@ function shake(el) {
   setTimeout(() => (el.style.transform = "translateX(0)"), 200);
 }
 
-// 정보 업데이트
+// 점수/라이프 표시 업데이트
 function updateInfo() {
   infoLives.textContent = "❤".repeat(lives);
   infoScore.textContent = `${score}점`;
@@ -264,12 +288,13 @@ function updateInfo() {
 
 // 게임 종료
 function gameOver() {
-  alert(`게임 종료! 최종 점수: ${score}점`);
-  input.value = "";
-  document.querySelectorAll(".wordCard").forEach((el) => {
-    el.textContent = "";
-    el.classList.remove("correct", "wrong");
-    if (el.classList.contains("prev")) el.style.visibility = "hidden";
-  });
-  currentIndex = 0;
+  section.style.display = "none";
+  noti.style.display = "flex";
+  noti.classList.remove("countdown");
+  notiSpan.textContent = `최종 점수: ${score}점`;
+
+  // 재도전 버튼 보이게
+  startBtn.style.display = "inline-block";
+  startBtn.innerHTML = "재도전";
+  startBtn.disabled = false;
 }
