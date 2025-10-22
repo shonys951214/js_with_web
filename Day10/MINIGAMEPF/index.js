@@ -120,7 +120,6 @@ const shuffleArr = (arr) => {
   return randomWords.slice(0, 20);
 };
 
-// DOM Elements
 const startBtn = document.querySelector("#startBtn");
 const resetBtn = document.querySelector("#resetBtn");
 const noti = document.querySelector(".noti");
@@ -144,12 +143,10 @@ let currentIndex = 0;
 let lives = 5;
 let score = 0;
 
-// START 또는 재도전 버튼 클릭 → 카운트다운
 startBtn.addEventListener("click", () => {
   startCountdown();
 });
 
-// RESET 버튼 → 새로고침
 resetBtn.addEventListener("click", () => {
   location.reload();
 });
@@ -161,8 +158,7 @@ function startCountdown() {
   noti.style.display = "flex";
   section.style.display = "none";
   startBtn.disabled = true;
-  startBtn.style.display = "none"; // 카운트다운 중 숨김
-
+  startBtn.style.display = "none";
   const countdown = setInterval(() => {
     count--;
     if (count > 0) {
@@ -181,7 +177,6 @@ function startCountdown() {
   }, 1000);
 }
 
-// 게임 시작
 function startGame() {
   wordsToType = shuffleArr(wordsArr);
   currentIndex = 0;
@@ -190,7 +185,6 @@ function startGame() {
   input.value = "";
   updateInfo();
 
-  // prev 초기화
   wordCards.prev1.textContent = "";
   wordCards.prev2.textContent = "";
   wordCards.prev1.style.visibility = "hidden";
@@ -198,14 +192,11 @@ function startGame() {
   wordCards.prev1.classList.remove("correct", "wrong");
   wordCards.prev2.classList.remove("correct", "wrong");
 
-  // mission 업데이트
   updateWordCards();
 
-  // 버튼 텍스트 복구
   startBtn.textContent = "재도전";
 }
 
-// 단어 카드 업데이트
 function updateWordCards() {
   wordCards.mission.textContent = wordsToType[currentIndex] || "";
   wordCards.mission.style.color = "#000";
@@ -216,7 +207,6 @@ function updateWordCards() {
   wordCards.next2.style.color = wordCards.next2.textContent ? "#ccc" : "";
 }
 
-// prev 카드 갱신 (정답 여부 표시)
 function updatePrevCards(missionWord, isCorrect) {
   const prev1 = wordCards.prev1;
   const prev2 = wordCards.prev2;
@@ -227,7 +217,6 @@ function updatePrevCards(missionWord, isCorrect) {
     prev1.classList.remove("correct", "wrong");
     prev1.classList.add(isCorrect ? "correct" : "wrong");
   } else {
-    // prev2 <- prev1, prev1 <- 새 단어
     prev2.textContent = prev1.textContent;
     prev2.style.visibility = "visible";
     prev2.classList.remove("correct", "wrong");
@@ -241,7 +230,6 @@ function updatePrevCards(missionWord, isCorrect) {
   }
 }
 
-// 입력 이벤트
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     const currentWord = wordsToType[currentIndex];
@@ -279,20 +267,17 @@ function shake(el) {
   setTimeout(() => (el.style.transform = "translateX(0)"), 200);
 }
 
-// 점수/라이프 표시 업데이트
 function updateInfo() {
   infoLives.textContent = "❤".repeat(lives);
   infoScore.textContent = `${score}점`;
 }
 
-// 게임 종료
 function gameOver() {
   section.style.display = "none";
   noti.style.display = "flex";
   noti.classList.remove("countdown");
   notiSpan.textContent = `최종 점수  :  ${score}점`;
 
-  // 재도전 버튼 보이게
   startBtn.style.display = "inline-block";
   startBtn.innerHTML = "재도전";
   startBtn.disabled = false;
